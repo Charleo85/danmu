@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>UVA好声音 Projector🎥</title>
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		crossorigin="anonymous"></script>
+
+		<!-- Customize for this slides -->
+		<link rel="stylesheet" href="css/danmu.css">
+		<link rel="stylesheet" href="css/font.css">
+
+		<link rel="stylesheet" href="bower_components/reveal.js/css/reveal.css">
+		<!-- Change for Reveal.js main theme -->
+		<link rel="stylesheet" href="bower_components/reveal.js/css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="bower_components/reveal.js/lib/css/zenburn.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'bower_components/reveal.js/css/print/pdf.css' : 'bower_components/reveal.js/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div id="dm-main">
+				<div id="dm-screen" style="background-color:rgba(0, 0, 0, 0.0);pointer-events:none;">
+				</div>
+			</div>
+
+			<div class="slides">
+				<section class="fig-container" data-fig-id="fig-collision-detection" data-file="./Collision-Detection.html" data-transitions="2">
+					<h1 id="unselectableText">UVA CSSS<br/>好声音 初赛</h1>
+					<!-- <div id="QRDisplay">google.com<img src="./resources"></div> -->
+				</section>
+
+				<section>
+					<h2>Feature Demo</h2>
+				</section>
+
+				<section data-background-transition="zoom" data-background="#4d7e65">
+					Slide 2
+				</section>
+
+				<section data-background-transition="slide-in fade-out" data-background="https://images.vice.com/vice/images/content-images/2014/12/05/everyone-is-messing-up-the-uva-rape-story-1205-body-image-1417814469.jpg">
+					Slide 3
+				</section>
+
+				<section>
+					<section>Slide 4</section>
+					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">Slide 4.1</section>
+				</section>
+
+				<section>
+					<h4>The End</h4>
+					<video data-autoplay src="./resources/littlework.mp4"></video>
+				</section>
+			</div>
+		</div>
+
+
+		<!-- Damoo -->
+		<script type="text/javascript" src="bower_components/damoo/src/damoo.min.js"></script>
+		<script type="text/javascript" src="./danmu.js"></script>
+
+		<!-- reveal.js -->
+		<script src="bower_components/reveal.js/lib/js/head.min.js"></script>
+		<script src="bower_components/reveal.js/js/reveal.js"></script>
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'https://d3js.org/d3.v4.min.js' },
+					{ src: 'bower_components/reveal.js/plugin/d3js/d3js.js' },
+					{ src: 'bower_components/reveal.js/plugin/markdown/marked.js' },
+					{ src: 'bower_components/reveal.js/plugin/markdown/markdown.js' },
+					{ src: 'bower_components/reveal.js/plugin/notes/notes.js', async: true },
+					{ src: 'bower_components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
