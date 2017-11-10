@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Welcome to UVA 好声音</title>
+		<link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+		<link rel="stylesheet" type="text/css" href="css/launcher.css">
+
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  		crossorigin="anonymous"></script>
+		<script src="js/semantic.min.js"></script>
+    <script src="js/client.min.js"></script>
+		
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-88370854-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-88370854-2');
+		</script>
+
+	</head>
+	<body>
+    <div id="main" class="displayBox">
+			<h1 class="ui center aligned header">弹幕发射器🚀 Premium</h1>
+			<h3 class="ui center aligned header" id="fingerprint"></h3>
+			<div class="ui container">
+				<div class="ui unstackable three steps">
+				  <div class="active step" id='step1'>
+				    <i class="text cursor icon"></i>
+				  </div>
+				  <div class="disabled step" id='step2'>
+				    <i class="font icon"></i>
+				  </div>
+				  <div class="disabled step" id='step3'>
+				    <i class="rocket icon"></i>
+				  </div>
+				</div>
+			</div>
+
+			<div class='displayBox' id='displayBox1'>
+				<h4 class="ui horizontal divider header">
+					<i class="quote left icon"></i>
+				  Edit
+				</h4>
+				<div class="ui container form">
+				  <div class="field">
+				    <textarea></textarea>
+				  </div>
+				</div>
+			</div>
+
+			<div class='displayBox' id='displayBox2'>
+				<h4 class="ui horizontal divider header">
+					<i class="sticky note icon"></i>
+					Preview
+				</h4>
+				<div class="ui container grid">
+
+					<div class="row" id="colorbar"></div>
+
+					<div class="row">
+						<div class="ui compact message" >
+							<!-- style="background-color:#000000" -->
+							<p id='sentPreview'></p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="ui checkbox">
+							<input type="checkbox" tabindex="0" class="hidden">
+							<label>Fixed to Display</label>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class='displayBox' id='displayBox3'>
+				<h4 class="ui horizontal divider header">
+					<i class="space shuttle icon"></i>
+					Send
+				</h4>
+				<div class="ui segment">
+				  <center>
+						<p>By clicking the send button, I agree that the content of my post follows all the Federal and State laws, and the developer and host of this system shall not be responsible for any consequence of my post.</p>
+						<p>The entire Danmu infrastructure is proundly open-sourced on <a href='https://github.com/Charleo85/danmu'><i class="github icon"></i>Charleo85/danmu</a></p>
+					</center>
+				</div>
+			</div>
+
+			<div class='displayBox'>
+					<center class="ui">
+						<button class="ui labeled icon disabled button" id='prevButton'>
+							<i class="left arrow icon"></i>
+							Prev
+						</button>
+						<button class="ui right labeled icon button" id='nextButton'>
+					  	<i class="right arrow icon"></i>
+					  	Next
+						</button>
+						<button class="ui right labeled icon button hideBox" id='sendButton'>
+							<i class="send icon"></i>
+							Send
+						</button>
+					</center>
+			</div>
+
+    </div>
+		<script type="text/javascript" src="js/launcher.js"></script>
+</body>
+</html>
