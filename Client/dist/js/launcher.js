@@ -3,39 +3,47 @@ var fingerprint = client.getFingerprint();
 var agentinfo = client.getBrowser()+client.getOS()+client.getOSVersion();
 console.log(fingerprint);
 var fingerprintNode = window.document.getElementById('fingerprint');
-if (fingerprint != 1493947517){
-  fingerprintNode.textContent = agentinfo;
-}else{
-  fingerprintNode.textContent = 'First Time Visted'+fingerprint;
-}
+// if (fingerprint != 1493947517){
+fingerprintNode.textContent = agentinfo;
+// }else{
+//   fingerprintNode.textContent = 'First Time Visted'+fingerprint;
+// }
 
 
 function sendMessage(msg, callback){
-  jQuery.ajax({
-      url: "https://danmu-183606.appspot.com/api/create/",
-      type: "POST",
-      headers: {
-          "Content-Type": "application/json; charset=utf-8",
-      },
-      contentType: "application/json",
-      data: JSON.stringify({
-          // "font_size": msg.font_size,
-          "fingerprint": fingerprint.toString(),
-          "user_agent": agentinfo,
-          "content": msg.content,
-          "display_mode": msg.fixed ? "f":"s",
-          "color": msg.color
-      })
-  })
-  .done(function(data, textStatus, jqXHR) {
-      console.log("HTTP Request Succeeded: " + jqXHR.status);
-      console.log(data);
-      callback(data);
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-      console.log("HTTP Request Failed");
-      alert('Please try send again');
-  });
+  const counter = msg.repeat ? 5 : 1;
+  var sent = false;
+  for (var i=0; i< counter; i++){
+    jQuery.ajax({
+        url: "https://danmu-183606.appspot.com/api/create/",
+        type: "POST",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        contentType: "application/json",
+        data: JSON.stringify({
+            // "font_size": msg.font_size,
+            "fingerprint": fingerprint.toString(),
+            "user_agent": agentinfo,
+            "content": msg.content,
+            "display_mode": msg.fixed ? "f":"s",
+            "color": msg.color
+        })
+    })
+    .done(function(data, textStatus, jqXHR) {
+        // console.log("HTTP Request Succeeded: " + jqXHR.status);
+        // console.log(data);
+        console.log(i);
+        if (!msg.repeat || !sent){
+          sent = true;
+          callback(data);
+        }
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        // console.log("HTTP Request Failed");
+        alert('Please try send again');
+    });
+  }
 }
 
 
@@ -43,8 +51,9 @@ function sendMessage(msg, callback){
 var curStep = 1;
 var options = {
   content: '',
-  color: '000000',
+  color: 'ffffff',
   fixed: false,
+  repeat: false,
 }
 
 $('.ui.checkbox').checkbox();
@@ -87,7 +96,7 @@ function saveStep(curStep){
     options.content = $('textarea').val();
     if (options.content){
       const len = options.content.length;
-      console.log(len);
+      // console.log(len);
       if (options.content.length == 0){
          alert('empty string not allowed');
          return false;
@@ -102,9 +111,11 @@ function saveStep(curStep){
 
     break;
   case 2:
-    options.fixed = $("input[type='checkbox']").is(":checked");
+    options.fixed = $("input[type='checkbox'][id='fixed']").is(":checked");
+    options.repeat = $("input[type='checkbox'][id='repeat']").is(":checked");
     // options.color = $('textarea').val();
-    console.log(options.fixed);
+    // console.log('repeat', options.repeat)
+    // console.log('fixed', options.fixed);
     break;
   case 3:
     break;
@@ -188,8 +199,8 @@ $('#sendButton').click(function(){
     }else{
       if (data.first_visit){
         // modal
-        alert('Awesome, your first Danmu is posted');
-      }{
+        alert('Awesome, your first Danmu is posted!');
+      }else{
         alert('Send Successful');
       }
       location.reload();
