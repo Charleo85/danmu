@@ -35,7 +35,9 @@ function getMessage(callback){
           // if (cur.color === '000000') {
           //   acc.push({'text':cur.content, 'color': '#ffffff', 'fixed':cur.display_mode==='f'});
           // }else{
+          for (var i=0; i<cur.num_repeat; i++){
             acc.push({'text':cur.content, 'color': '#'+cur.color, 'fixed':cur.display_mode==='f'});
+          }
           // }
           return acc;
         }, [])
@@ -46,7 +48,7 @@ function getMessage(callback){
         var len = ids.length;
         if (len > 0) {
           // console.log(messages);
-          console.log(ids);
+          // console.log(ids);
           launchSuccess(ids);
           callback(messages, len);
         }
@@ -79,8 +81,9 @@ damoo.emit({ text: 'Welcome to 厉害的弹幕', color: '#' + Math.random().toSt
 
 addEvent(document.body, 'keypress', function(e) {
     var keyCode = e.keyCode || e.which;
+    console.log(keyCode)
     switch (keyCode) {
-        case 13: // shift + a
+        case 83: // shift + a
             var text = prompt('Text?');
             if (!text) return;
             var color = prompt('Text color? (#fff)');

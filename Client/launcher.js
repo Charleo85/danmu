@@ -1,49 +1,42 @@
-var client = new ClientJS();
-var fingerprint = client.getFingerprint();
-var agentinfo = client.getBrowser()+client.getOS()+client.getOSVersion();
-console.log(fingerprint);
-var fingerprintNode = window.document.getElementById('fingerprint');
+const client = new ClientJS();
+const fingerprint = client.getFingerprint();
+const agentinfo = client.getBrowser()+client.getOS()+client.getOSVersion();
+// console.log(fingerprint);
+// var fingerprintNode = window.document.getElementById('fingerprint');
 // if (fingerprint != 1493947517){
-fingerprintNode.textContent = agentinfo;
+// fingerprintNode.textContent = agentinfo;
 // }else{
 //   fingerprintNode.textContent = 'First Time Visted'+fingerprint;
 // }
 
 
 function sendMessage(msg, callback){
-  const counter = msg.repeat ? 5 : 1;
-  var sent = false;
-  for (var i=0; i< counter; i++){
-    jQuery.ajax({
-        url: "https://danmu-183606.appspot.com/api/create/",
-        type: "POST",
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-        },
-        contentType: "application/json",
-        data: JSON.stringify({
-            // "font_size": msg.font_size,
-            "fingerprint": fingerprint.toString(),
-            "user_agent": agentinfo,
-            "content": msg.content,
-            "display_mode": msg.fixed ? "f":"s",
-            "color": msg.color
-        })
-    })
-    .done(function(data, textStatus, jqXHR) {
-        // console.log("HTTP Request Succeeded: " + jqXHR.status);
-        // console.log(data);
-        console.log(i);
-        if (!msg.repeat || !sent){
-          sent = true;
-          callback(data);
-        }
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        // console.log("HTTP Request Failed");
-        alert('Please try send again');
-    });
-  }
+  jQuery.ajax({
+      url: "https://danmu-183606.appspot.com/api/create/",
+      type: "POST",
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      contentType: "application/json",
+      data: JSON.stringify({
+          // "font_size": msg.font_size,
+          "fingerprint": fingerprint.toString(),
+          "user_agent": agentinfo,
+          "content": msg.content,
+          "display_mode": msg.fixed ? "f":"s",
+          "color": msg.color,
+          "num_repeat": msg.repeat ? 5 : 1,
+      })
+  })
+  .done(function(data, textStatus, jqXHR) {
+      // console.log("HTTP Request Succeeded: " + jqXHR.status);
+      // console.log(data);
+      callback(data);
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+      // console.log("HTTP Request Failed");
+      alert('Please try send again');
+  });
 }
 
 
@@ -98,14 +91,14 @@ function saveStep(curStep){
       const len = options.content.length;
       // console.log(len);
       if (options.content.length == 0){
-         alert('empty string not allowed');
+         alert('empty text not allowed');
          return false;
        }else if (options.content.length > MAX_LENGTH){
          alert(`You can at most enter ${MAX_LENGTH} characters`);
          return false;
        }
     }else{
-      alert('empty string not allowed');
+      alert('empty text not allowed');
       return false;
     }
 
