@@ -53,22 +53,21 @@ $('.ui.checkbox').checkbox();
 //  userinfo:{fingerprint: fingerprint.toString()}
 
 colorMap = {
-  red: 'D50000',
-  brown: 'FF5722',
-  cardinal: 'C41E3A',
+  red: 'FF8A80',
   purple: 'B413EC',
   violet: 'EE82EE',
   pink: 'FF1493',
+  brown: 'FF7043',
   orange: 'FE9A76',
   yellow: 'FFD700',
   lime: 'CDDC39',
   olive: '32CD32',
-  green: '016936',
-  teal: '008080',
-  blue: '0E6EB8',
+  green: '80CBC4',
+  teal: 'C8E6C9',
+  blue: '9FA8DA',
   cyan: '00BCD4',
-  grey: 'A0A0A0',
-  black: '000000',
+  grey: 'E0E0E0',
+  white: 'EEEEEE',
 }
 
 for (const key in colorMap){

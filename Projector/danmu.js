@@ -77,7 +77,7 @@ var addEvent = function(obj, nm, cb) {
     }
 };
 
-damoo.emit({ text: 'Welcome to 厉害的弹幕', color: '#' + Math.random().toString(16).substring(2).substring(0, 6) });
+damoo.emit({ text: '厉害的弹幕initiated', color: '#' + Math.random().toString(16).substring(2).substring(0, 6) });
 
 addEvent(document.body, 'keypress', function(e) {
     var keyCode = e.keyCode || e.which;
@@ -140,7 +140,15 @@ function sentListofMessage(list, interval){
           if(list[i].text.length > MAX_LENGTH){
             list[i].text = list[i].text.substr(0, MAX_LENGTH)
           }
-          damoo.emit(list[i++]);
+          if (list[i].text.startsWith('command')){
+            console.log(list[i].text)
+            if (list[i].text === 'command pause') damoo.pause();
+            if (list[i].text === 'command resume') damoo.resume();
+            if (list[i].text === 'command clear') damoo.clear();
+          }else{
+            damoo.emit(list[i]);
+          }
+          i = i+1;
       } else {
           clearInterval(demoInterval);
       }
@@ -163,3 +171,18 @@ setInterval(function() {
         //clearInterval(demoInterval);
     }
 }, 5000);
+
+
+// var socket = io('https://wujibang.com');
+// socketOptions = {
+//   extraHeaders: {
+//     'Access-Control-Allow-Origin': '*',
+//     'Origin': 'localhost'
+//   }
+// }
+// var socket = io('http://localhost:3000');
+//
+// socket.on('connect', function (data) {
+//     socket.emit('event', {test: 'works'});
+//     location.reload();
+// });
